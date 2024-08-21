@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 const banner = () => {
   const [banner, setBanner] = useState([])
@@ -17,6 +18,13 @@ const banner = () => {
 
   return (
     <div>
+      
+    {/* <div>
+        <div className='md:hidden flex justify-center my-10'>
+                <input type="search" className=' outline-none text-gray-950 w-[350px] h-3 rounded-sm border-2 border-gray-200 py-5 pl-4' placeholder='search for products ' />
+        </div>
+    </div> */}
+
         <div className=' w-5/6 mx-auto  md:my-16  '>
             <Swiper
                 spaceBetween={50}
@@ -28,11 +36,15 @@ const banner = () => {
                     disableOnInteraction: true, 
                 }}
                 >
-                {
-                  banner.map((dta)=>(
-                      <SwiperSlide><img src={dta.img} alt=""   className='w-6/6 mx-auto mb-2'   /></SwiperSlide>
-                  ))
-                }           
+                {banner.map((data) => (
+
+                        <SwiperSlide key={data.id}>
+                          <Link  to={`/${data.name.toLowerCase()}`}>
+                              <img src={data.img} alt="" className="w-6/6 mx-auto mb-2" /> 
+                          </Link>
+                        </SwiperSlide>
+
+                ))}          
             </Swiper>
            
 
